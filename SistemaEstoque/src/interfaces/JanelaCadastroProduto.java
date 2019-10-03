@@ -17,6 +17,7 @@ public class JanelaCadastroProduto extends javax.swing.JFrame {
         this.controlador = controlador;
         itens_cadastrados = Produto.getVisões();
         initComponents();
+        categoriaComboBox.setSelectedIndex(-1);
         this.setLocationRelativeTo(null);
     }
 
@@ -44,6 +45,8 @@ public class JanelaCadastroProduto extends javax.swing.JFrame {
         sequencialTextField = new javax.swing.JTextField();
         valorTotalLabel = new javax.swing.JLabel();
         valorTotalTextField = new javax.swing.JTextField();
+        combo_categoriaLabel = new javax.swing.JLabel();
+        categoriaComboBox = new javax.swing.JComboBox();
         BotõesPanel = new javax.swing.JPanel();
         InserirButton = new javax.swing.JButton();
         consultarButton = new javax.swing.JButton();
@@ -54,167 +57,154 @@ public class JanelaCadastroProduto extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        CadastroItemPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Formulário", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(51, 102, 255))); // NOI18N
-        CadastroItemPanel.setLayout(new java.awt.GridBagLayout());
+        CadastroItemPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Formulário", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), new java.awt.Color(51, 102, 255))); // NOI18N
 
         ProdutosCadastradosLabel.setText("Produtos Cadastrados:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(78, 54, 0, 0);
-        CadastroItemPanel.add(ProdutosCadastradosLabel, gridBagConstraints);
 
         itens_cadastradosComboBox.setModel(new DefaultComboBoxModel(itens_cadastrados));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(75, 20, 0, 0);
-        CadastroItemPanel.add(itens_cadastradosComboBox, gridBagConstraints);
 
         NomeItemLabel.setText("Nome do Produto:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(9, 78, 0, 0);
-        CadastroItemPanel.add(NomeItemLabel, gridBagConstraints);
 
         códigoBarraLabel.setText("Código de Barras:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(13, 79, 0, 0);
-        CadastroItemPanel.add(códigoBarraLabel, gridBagConstraints);
 
         EstoqueLabel.setText("Quantidade:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(9, 105, 0, 0);
-        CadastroItemPanel.add(EstoqueLabel, gridBagConstraints);
 
         MarcaLabel.setText("Marca:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 8;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(9, 132, 0, 0);
-        CadastroItemPanel.add(MarcaLabel, gridBagConstraints);
 
         Valor_UnitarioLabel.setText("Valor Unitário:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 10;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(9, 97, 0, 0);
-        CadastroItemPanel.add(Valor_UnitarioLabel, gridBagConstraints);
 
         categorialLabel.setText("Categoria:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 12;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(9, 114, 0, 0);
-        CadastroItemPanel.add(categorialLabel, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 315;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 18, 0, 0);
-        CadastroItemPanel.add(NomeItemTextField, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = 6;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 315;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 20, 0, 62);
-        CadastroItemPanel.add(Código_barrasItemTextField, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 83;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 20, 0, 0);
-        CadastroItemPanel.add(EstoqueItemTextField, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 8;
-        gridBagConstraints.gridwidth = 6;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 315;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 20, 0, 62);
-        CadastroItemPanel.add(MarcaTextField, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 10;
-        gridBagConstraints.gridwidth = 4;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 85;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 20, 0, 0);
-        CadastroItemPanel.add(valor_unitárioTextField, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 12;
-        gridBagConstraints.gridwidth = 4;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 85;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 20, 0, 0);
-        CadastroItemPanel.add(CategoriaItemTextField, gridBagConstraints);
 
         IdentificadorLabel.setText("Identificador Sequencial: ");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 14;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(9, 43, 0, 0);
-        CadastroItemPanel.add(IdentificadorLabel, gridBagConstraints);
 
         sequencialTextField.setEditable(false);
         sequencialTextField.setColumns(5);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 14;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 80;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 18, 0, 0);
-        CadastroItemPanel.add(sequencialTextField, gridBagConstraints);
 
         valorTotalLabel.setText("Valor Total:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 16;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(9, 110, 0, 0);
-        CadastroItemPanel.add(valorTotalLabel, gridBagConstraints);
 
         valorTotalTextField.setEditable(false);
         valorTotalTextField.setColumns(5);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 16;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 80;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 18, 7, 0);
-        CadastroItemPanel.add(valorTotalTextField, gridBagConstraints);
+
+        combo_categoriaLabel.setText("Categoria:");
+
+        categoriaComboBox.setModel(new DefaultComboBoxModel (Produto.categorias));
+        categoriaComboBox.setAutoscrolls(true);
+
+        javax.swing.GroupLayout CadastroItemPanelLayout = new javax.swing.GroupLayout(CadastroItemPanel);
+        CadastroItemPanel.setLayout(CadastroItemPanelLayout);
+        CadastroItemPanelLayout.setHorizontalGroup(
+            CadastroItemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(CadastroItemPanelLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addGroup(CadastroItemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(ProdutosCadastradosLabel)
+                    .addComponent(NomeItemLabel)
+                    .addComponent(códigoBarraLabel)
+                    .addComponent(EstoqueLabel)
+                    .addComponent(MarcaLabel)
+                    .addComponent(Valor_UnitarioLabel)
+                    .addComponent(categorialLabel)
+                    .addComponent(IdentificadorLabel)
+                    .addComponent(combo_categoriaLabel)
+                    .addComponent(valorTotalLabel))
+                .addGroup(CadastroItemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(CadastroItemPanelLayout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addGroup(CadastroItemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(valorTotalTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sequencialTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(categoriaComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(CadastroItemPanelLayout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addComponent(CategoriaItemTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(CadastroItemPanelLayout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addComponent(valor_unitárioTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(CadastroItemPanelLayout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addComponent(MarcaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(CadastroItemPanelLayout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addComponent(EstoqueItemTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(CadastroItemPanelLayout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addComponent(Código_barrasItemTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(CadastroItemPanelLayout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(NomeItemTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(CadastroItemPanelLayout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addComponent(itens_cadastradosComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+        );
+        CadastroItemPanelLayout.setVerticalGroup(
+            CadastroItemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(CadastroItemPanelLayout.createSequentialGroup()
+                .addGroup(CadastroItemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(CadastroItemPanelLayout.createSequentialGroup()
+                        .addGap(75, 75, 75)
+                        .addComponent(itens_cadastradosComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CadastroItemPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(ProdutosCadastradosLabel)))
+                .addGroup(CadastroItemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(CadastroItemPanelLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(NomeItemTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CadastroItemPanelLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(NomeItemLabel)))
+                .addGroup(CadastroItemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(CadastroItemPanelLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(Código_barrasItemTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CadastroItemPanelLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(códigoBarraLabel)
+                        .addGap(18, 18, 18)))
+                .addGroup(CadastroItemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(EstoqueItemTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(EstoqueLabel))
+                .addGroup(CadastroItemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(CadastroItemPanelLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(MarcaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(CadastroItemPanelLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(MarcaLabel)))
+                .addGroup(CadastroItemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(CadastroItemPanelLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(valor_unitárioTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CadastroItemPanelLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Valor_UnitarioLabel)
+                        .addGap(18, 18, 18)))
+                .addGroup(CadastroItemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(CategoriaItemTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(categorialLabel))
+                .addGroup(CadastroItemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(CadastroItemPanelLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(sequencialTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(CadastroItemPanelLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(IdentificadorLabel)))
+                .addGap(6, 6, 6)
+                .addGroup(CadastroItemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(CadastroItemPanelLayout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(valorTotalLabel))
+                    .addComponent(valorTotalTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(CadastroItemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(combo_categoriaLabel)
+                    .addComponent(categoriaComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(69, Short.MAX_VALUE))
+        );
+
+        categoriaComboBox.getAccessibleContext().setAccessibleParent(this);
 
         BotõesPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         BotõesPanel.setLayout(new java.awt.GridBagLayout());
@@ -324,9 +314,9 @@ public class JanelaCadastroProduto extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(SairButton)
-                .addGap(3, 3, 3)
-                .addComponent(CadastroItemPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(CadastroItemPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(BotõesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28))
         );
@@ -515,7 +505,9 @@ public class JanelaCadastroProduto extends javax.swing.JFrame {
     private javax.swing.JLabel ProdutosCadastradosLabel;
     private javax.swing.JButton SairButton;
     private javax.swing.JLabel Valor_UnitarioLabel;
+    private javax.swing.JComboBox categoriaComboBox;
     private javax.swing.JLabel categorialLabel;
+    private javax.swing.JLabel combo_categoriaLabel;
     private javax.swing.JButton consultarButton;
     private javax.swing.JLabel códigoBarraLabel;
     private javax.swing.JComboBox itens_cadastradosComboBox;

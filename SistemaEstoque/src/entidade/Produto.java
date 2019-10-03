@@ -8,7 +8,13 @@ import java.util.Vector;
 import persistência.BD;
 
 public class Produto {
-
+    
+    public enum Categoria{
+        Alimentício, Limpeza, Embalagem, Higiene, Informática;
+    };
+    
+    public static final Categoria[] categorias = Categoria.values();
+    
     private String nome;
     private int quantEstoque;
     private String marca;
