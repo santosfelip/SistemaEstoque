@@ -29,7 +29,7 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Produto"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Cursor Padr&#xe3;o"/>
+              <Color id="Cursor em Forma de M&#xe3;o"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="4"/>
           </Properties>
@@ -59,6 +59,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Fornecedor"/>
             <Property name="toolTipText" type="java.lang.String" value=""/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Cursor em Forma de M&#xe3;o"/>
+            </Property>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="cadastrar_fornecedorMenuItem">
@@ -81,6 +84,9 @@
               <Image iconType="3" name="/icones/compra.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="ItemEstoque"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Cursor em Forma de M&#xe3;o"/>
+            </Property>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="cadastrar_itemEstoqueMenuItem">

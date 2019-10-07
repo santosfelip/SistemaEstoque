@@ -129,7 +129,7 @@ public class ItemEstoque {
         }
         
         //Pegando Produto
-        sql = "SELECT codigo_barras,nome, quantidade, marca,valorUnitario,valorTotal,Categoria FROM produto WHERE Sequencial = ?";
+        sql = "SELECT codigo_barras,nome, quantidade, marca,valorUnitario,valorTotal,Categoria,Comprar FROM produto WHERE Sequencial = ?";
         Produto produto = null;
         try {
             PreparedStatement comando = BD.conexão.prepareStatement(sql);
@@ -142,8 +142,9 @@ public class ItemEstoque {
                 Produto.Categoria.values()[lista_resultados.getInt("Categoria")],
                 lista_resultados.getString("marca"),
                 lista_resultados.getInt("quantidade"),
-                lista_resultados.getDouble("valorUnitario"),
-                lista_resultados.getDouble("valorTotal"));
+                lista_resultados.getFloat("valorUnitario"),
+                lista_resultados.getFloat("valorTotal"),
+                 lista_resultados.getBoolean("Comprar"));
             }
             lista_resultados.close();
             comando.close();

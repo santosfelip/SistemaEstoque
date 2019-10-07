@@ -13,6 +13,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     public JanelaPrincipal() {
         BD.criaConexão();
         initComponents();
+        this.setExtendedState(MAXIMIZED_BOTH); this.show();
         this.setLocationRelativeTo(null);//<--comando para que a Janela apareça Centralizado na Tela
     }
     
@@ -66,7 +67,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         produtoMenu.setBackground(new java.awt.Color(204, 204, 204));
         produtoMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/produto.png"))); // NOI18N
         produtoMenu.setText("Produto");
-        produtoMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        produtoMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         produtoMenu.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
 
         cadastrar_produtoMenuItem.setText("Cadastrar");
@@ -88,6 +89,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         FornecedorMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/fornecedor.png"))); // NOI18N
         FornecedorMenu.setText("Fornecedor");
         FornecedorMenu.setToolTipText("");
+        FornecedorMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         cadastrar_fornecedorMenuItem.setText("Cadastrar");
         cadastrar_fornecedorMenuItem.setActionCommand("");
@@ -103,6 +105,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         estoqueMenu.setBackground(new java.awt.Color(0, 0, 0));
         estoqueMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/compra.png"))); // NOI18N
         estoqueMenu.setText("ItemEstoque");
+        estoqueMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         cadastrar_itemEstoqueMenuItem.setText("Cadastrar");
         cadastrar_itemEstoqueMenuItem.addActionListener(new java.awt.event.ActionListener() {

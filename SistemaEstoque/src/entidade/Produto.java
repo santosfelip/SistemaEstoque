@@ -19,14 +19,15 @@ public class Produto {
     private int quantEstoque;
     private String marca;
     private String código_barras;
-    private double valorUnidade;
-    private double valorTotal;
+    private float valorUnidade;
+    private float valorTotal;
     private Categoria categoria;
     private int sequencial;
+    private Boolean comprar;
     
     //Construtor
     public Produto(int Sequencial,String código, String nome,Categoria categoria,String marca,
-            int quantEstoque,double valorUnidade,double valorTotal)
+            int quantEstoque,float valorUnidade,float valorTotal, Boolean comprar)
     {
         this.nome = nome;
         this.quantEstoque = quantEstoque;
@@ -36,6 +37,7 @@ public class Produto {
         this.valorTotal = valorTotal;
         this.categoria = categoria;
         this.sequencial = Sequencial;
+        this.comprar = comprar;
         
     }
     
@@ -75,7 +77,7 @@ public class Produto {
     }
     
     public static Produto buscarItem(int sequencial){
-    String sql = "SELECT codigo_barras,nome, quantidade, marca,valorUnitario,valorTotal,Categoria FROM produto WHERE Sequencial = ?";
+    String sql = "SELECT codigo_barras,nome, quantidade, marca,valorUnitario,valorTotal,Categoria,Comprar FROM produto WHERE Sequencial = ?";
     ResultSet lista_resultados = null;
     Produto item = null;
     try {
@@ -89,8 +91,9 @@ public class Produto {
             Categoria.values()[lista_resultados.getInt("Categoria")],
             lista_resultados.getString("marca"),
             lista_resultados.getInt("quantidade"),
-            lista_resultados.getDouble("valorUnitario"),
-            lista_resultados.getDouble("valorTotal"));
+            lista_resultados.getFloat("valorUnitario"),
+            lista_resultados.getFloat("valorTotal"),
+             lista_resultados.getBoolean("Comprar"));
         }
         lista_resultados.close();
         comando.close();
@@ -102,9 +105,10 @@ public class Produto {
  }
     
     public static String inserirItem (Produto item) {
-         String sql = "INSERT INTO produto(codigo_barras, nome, quantidade,marca,valorUnitario,ValorTotal,Categoria)"
-         + " VALUES (?,?,?,?,?,?,?)";
+         String sql = "INSERT INTO produto(codigo_barras, nome, quantidade,marca,valorUnitario,ValorTotal,Categoria,Comprar)"
+         + " VALUES (?,?,?,?,?,?,?,?)";
          String mensagem_erro = null;
+         int comprar = item.getComprar() ? 1 : 0;
          try {
              PreparedStatement comando = BD.conexão.prepareStatement(sql);
              comando.setString(1, item.getCódigo_barras());
@@ -114,6 +118,7 @@ public class Produto {
              comando.setDouble(5, item.getValorUnidade());
              comando.setDouble(6, item.getValorTotal());
              comando.setString(7,item.getCategoria().ordinal() + "");
+             comando.setInt(8, comprar);
              comando.executeUpdate();
              comando.close();
          } catch (SQLException exceção_sql) {
@@ -143,8 +148,9 @@ public class Produto {
     }
     
     public static String alterarItem (Produto item) {
-        String sql = "UPDATE produto SET codigo_barras = ?, nome = ?, quantidade = ?, marca = ?,valorUnitario = ?, valorTotal = ?, Categoria = ?"
+        String sql = "UPDATE produto SET codigo_barras = ?, nome = ?, quantidade = ?, marca = ?,valorUnitario = ?, valorTotal = ?, Categoria = ?, Comprar = ?"
         + " WHERE Sequencial = ?";
+        int comprar = item.getComprar()?1:0;
         try {
             PreparedStatement comando = BD.conexão.prepareStatement(sql);
             comando.setString(1, item.getCódigo_barras());
@@ -154,7 +160,8 @@ public class Produto {
             comando.setDouble(5,item.getValorUnidade());
             comando.setDouble(6,item.getValorTotal());
             comando.setString(7, item.getCategoria().ordinal() + "");
-            comando.setInt(8, item.getSequencial());
+            comando.setInt(8,comprar);
+            comando.setInt(9, item.getSequencial());
             comando.executeUpdate();
             comando.close();
             return null;
@@ -206,16 +213,16 @@ public class Produto {
     public void setMarca(String marca) {
         this.marca = marca;
     }
-    public double getValorUnidade() {
+    public float getValorUnidade() {
         return valorUnidade;
     }
-    public void setValorUnidade(double valorUnidade1) {
+    public void setValorUnidade(float valorUnidade1) {
         this.valorUnidade = valorUnidade1;
     }
-    public double getValorTotal() {
+    public float getValorTotal() {
         return valorTotal;
     }
-    public void setValorTotal(double valorTotal) {
+    public void setValorTotal(float valorTotal) {
         this.valorTotal = valorTotal;
     }
     
@@ -240,6 +247,14 @@ public class Produto {
 
     public void setSequencial(int sequencial) {
         this.sequencial = sequencial;
+    }
+    
+    public Boolean getComprar() {
+        return comprar;
+    }
+
+    public void setComprar(Boolean comprar) {
+        this.comprar = comprar;
     }
     @Override
     public String toString(){
