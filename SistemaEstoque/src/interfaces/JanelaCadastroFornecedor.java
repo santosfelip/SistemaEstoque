@@ -27,6 +27,7 @@ public class JanelaCadastroFornecedor extends javax.swing.JFrame {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
+        grupoBotoesbuttonGroup = new javax.swing.ButtonGroup();
         FormularioPanel = new javax.swing.JPanel();
         NomeLabel = new javax.swing.JLabel();
         CnpjLabel = new javax.swing.JLabel();
@@ -34,6 +35,9 @@ public class JanelaCadastroFornecedor extends javax.swing.JFrame {
         CnpjTextField = new javax.swing.JFormattedTextField();
         FornecedoresCadastradosLabel = new javax.swing.JLabel();
         fornecedores_cadastradosComboBox = new javax.swing.JComboBox();
+        botoesPanel = new javax.swing.JPanel();
+        contratoRadioButton = new javax.swing.JRadioButton();
+        licitacaoRadioButton = new javax.swing.JRadioButton();
         BotõesPanel = new javax.swing.JPanel();
         InserirButton = new javax.swing.JButton();
         consultarButton = new javax.swing.JButton();
@@ -44,36 +48,14 @@ public class JanelaCadastroFornecedor extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        FormularioPanel.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEmptyBorder(5, 0, 5, 0), javax.swing.BorderFactory.createTitledBorder(null, "Formulário", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(102, 153, 255)))); // NOI18N
+        FormularioPanel.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEmptyBorder(5, 0, 5, 0), javax.swing.BorderFactory.createTitledBorder(null, "Formulário", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), new java.awt.Color(102, 153, 255)))); // NOI18N
         FormularioPanel.setOpaque(false);
-        FormularioPanel.setLayout(new java.awt.GridBagLayout());
 
         NomeLabel.setText("Nome:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(9, 6, 0, 0);
-        FormularioPanel.add(NomeLabel, gridBagConstraints);
 
         CnpjLabel.setText("CNPJ:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(7, 8, 0, 0);
-        FormularioPanel.add(CnpjLabel, gridBagConstraints);
 
         NomeFornecedorTextField.setColumns(25);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 336;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 4, 0, 16);
-        FormularioPanel.add(NomeFornecedorTextField, gridBagConstraints);
 
         CnpjTextField.setColumns(14);
         try {
@@ -82,33 +64,72 @@ public class JanelaCadastroFornecedor extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         CnpjTextField.setValue(new String());
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 336;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 4, 27, 16);
-        FormularioPanel.add(CnpjTextField, gridBagConstraints);
 
         FornecedoresCadastradosLabel.setText("Fornecedores Cadastrados:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(26, 6, 0, 0);
-        FormularioPanel.add(FornecedoresCadastradosLabel, gridBagConstraints);
 
         fornecedores_cadastradosComboBox.setModel(new DefaultComboBoxModel(fornecedores_cadastrados));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(23, 10, 0, 0);
-        FormularioPanel.add(fornecedores_cadastradosComboBox, gridBagConstraints);
+
+        botoesPanel.setBorder(null);
+
+        grupoBotoesbuttonGroup.add(contratoRadioButton);
+        contratoRadioButton.setText("Contrato");
+        contratoRadioButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botoesPanel.add(contratoRadioButton);
+
+        grupoBotoesbuttonGroup.add(licitacaoRadioButton);
+        licitacaoRadioButton.setText("Licitação");
+        licitacaoRadioButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botoesPanel.add(licitacaoRadioButton);
+
+        javax.swing.GroupLayout FormularioPanelLayout = new javax.swing.GroupLayout(FormularioPanel);
+        FormularioPanel.setLayout(FormularioPanelLayout);
+        FormularioPanelLayout.setHorizontalGroup(
+            FormularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(FormularioPanelLayout.createSequentialGroup()
+                .addGroup(FormularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(FormularioPanelLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(FornecedoresCadastradosLabel)
+                        .addGap(30, 30, 30)
+                        .addComponent(fornecedores_cadastradosComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(FormularioPanelLayout.createSequentialGroup()
+                        .addGroup(FormularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(FormularioPanelLayout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(NomeLabel))
+                            .addGroup(FormularioPanelLayout.createSequentialGroup()
+                                .addGap(8, 8, 8)
+                                .addComponent(CnpjLabel)))
+                        .addGap(4, 4, 4)
+                        .addGroup(FormularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(CnpjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 528, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(NomeFornecedorTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 671, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botoesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(89, 89, 89))
+        );
+        FormularioPanelLayout.setVerticalGroup(
+            FormularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(FormularioPanelLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(FormularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(FormularioPanelLayout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(FornecedoresCadastradosLabel))
+                    .addComponent(fornecedores_cadastradosComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(6, 6, 6)
+                .addGroup(FormularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(FormularioPanelLayout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(NomeLabel))
+                    .addComponent(NomeFornecedorTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(2, 2, 2)
+                .addGroup(FormularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CnpjLabel)
+                    .addComponent(CnpjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(botoesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(43, Short.MAX_VALUE))
+        );
 
         BotõesPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         BotõesPanel.setLayout(new java.awt.GridBagLayout());
@@ -214,15 +235,15 @@ public class JanelaCadastroFornecedor extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(FormularioPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(BotõesPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 10, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(SairButton)
-                .addGap(11, 11, 11)
-                .addComponent(FormularioPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(FormularioPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(BotõesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
@@ -256,6 +277,11 @@ public class JanelaCadastroFornecedor extends javax.swing.JFrame {
         if (mensagem_erro == null) {
             CnpjTextField.setText(f1.getCnpj());
             NomeFornecedorTextField.setText (f1.getNome());
+            if (f1.getContrato().equals("c")) {
+                contratoRadioButton.setSelected(true);
+            } else {
+                licitacaoRadioButton.setSelected(true);
+            }
         } else JOptionPane.showMessageDialog
         (this, mensagem_erro, "ERRO", JOptionPane.ERROR_MESSAGE);
     }//GEN-LAST:event_consultarFornecedor
@@ -300,11 +326,13 @@ public class JanelaCadastroFornecedor extends javax.swing.JFrame {
     private void limparCamposTexto(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limparCamposTexto
         CnpjTextField.setText ("");
         NomeFornecedorTextField.setText("");
+        grupoBotoesbuttonGroup.clearSelection();
     }//GEN-LAST:event_limparCamposTexto
     //polimorfismo de Sobrecarga
     private void limparCamposTexto() {                                   
         CnpjTextField.setText ("");
         NomeFornecedorTextField.setText("");
+        grupoBotoesbuttonGroup.clearSelection();
     }   
     
     private Fornecedor obterFornecedorInformado() {
@@ -319,8 +347,17 @@ public class JanelaCadastroFornecedor extends javax.swing.JFrame {
         if (cnpj.isEmpty()) return null;
         if(mascara.equals(cnpj)) return null;//verifica se não escreveu nada
         
+        String modo_contrato = null;
+        if (contratoRadioButton.isSelected()) {
+            modo_contrato = "c";
+        } else if (licitacaoRadioButton.isSelected()) {
+            modo_contrato = "l";
+        } else {
+            return null;
+        }
+        
         //retorno
-        return new Fornecedor(cnpj,nome);
+        return new Fornecedor(cnpj,nome,modo_contrato);
     }
     
     //Método para pegar a visão dos Fornecedores
@@ -348,8 +385,12 @@ public class JanelaCadastroFornecedor extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField NomeFornecedorTextField;
     private javax.swing.JLabel NomeLabel;
     private javax.swing.JButton SairButton;
+    private javax.swing.JPanel botoesPanel;
     private javax.swing.JButton consultarButton;
+    private javax.swing.JRadioButton contratoRadioButton;
     private javax.swing.JComboBox fornecedores_cadastradosComboBox;
+    javax.swing.ButtonGroup grupoBotoesbuttonGroup;
+    private javax.swing.JRadioButton licitacaoRadioButton;
     private javax.swing.JButton limparButton;
     private javax.swing.JButton removerButton;
     // End of variables declaration//GEN-END:variables

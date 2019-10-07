@@ -21,11 +21,11 @@ public class Produto {
     private String código_barras;
     private double valorUnidade;
     private double valorTotal;
-    private String centroCusto;
+    private Categoria categoria;
     private int sequencial;
     
     //Construtor
-    public Produto(int Sequencial,String código, String nome,String categoria,String marca,
+    public Produto(int Sequencial,String código, String nome,Categoria categoria,String marca,
             int quantEstoque,double valorUnidade,double valorTotal)
     {
         this.nome = nome;
@@ -34,7 +34,7 @@ public class Produto {
         this.código_barras = código;
         this.valorUnidade = valorUnidade;
         this.valorTotal = valorTotal;
-        this.centroCusto = categoria;
+        this.categoria = categoria;
         this.sequencial = Sequencial;
         
     }
@@ -86,7 +86,7 @@ public class Produto {
             item = new Produto (sequencial,
             lista_resultados.getString("codigo_barras"),
             lista_resultados.getString("nome"),
-            lista_resultados.getString("Categoria"),
+            Categoria.values()[lista_resultados.getInt("Categoria")],
             lista_resultados.getString("marca"),
             lista_resultados.getInt("quantidade"),
             lista_resultados.getDouble("valorUnitario"),
@@ -113,7 +113,7 @@ public class Produto {
              comando.setString(4,item.getMarca());
              comando.setDouble(5, item.getValorUnidade());
              comando.setDouble(6, item.getValorTotal());
-             comando.setString(7,item.getCentroCusto());
+             comando.setString(7,item.getCategoria().ordinal() + "");
              comando.executeUpdate();
              comando.close();
          } catch (SQLException exceção_sql) {
@@ -153,7 +153,7 @@ public class Produto {
             comando.setString(4, item.getMarca());
             comando.setDouble(5,item.getValorUnidade());
             comando.setDouble(6,item.getValorTotal());
-            comando.setString(7, item.getCentroCusto());
+            comando.setString(7, item.getCategoria().ordinal() + "");
             comando.setInt(8, item.getSequencial());
             comando.executeUpdate();
             comando.close();
@@ -218,11 +218,13 @@ public class Produto {
     public void setValorTotal(double valorTotal) {
         this.valorTotal = valorTotal;
     }
-    public String getCentroCusto() {
-        return centroCusto;
+    
+    public Categoria getCategoria() {
+        return categoria;
     }
-    public void setCentroCusto(String centroCusto) {
-        this.centroCusto = centroCusto;
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
 
     public String getCódigo_barras() {

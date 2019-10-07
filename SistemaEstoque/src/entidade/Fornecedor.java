@@ -11,10 +11,12 @@ public class Fornecedor {
 
     private String nome;
     private String cnpj;
+    private String contrato;
 
-    public Fornecedor(String cnpj, String nome) {
+    public Fornecedor(String cnpj, String nome, String contrato) {
         this.nome = nome;
         this.cnpj = cnpj;
+        this.contrato = contrato;
     }
 
     public String getNome() {
@@ -32,7 +34,15 @@ public class Fornecedor {
     public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
     }
+    
+    public String getContrato() {
+        return contrato;
+    }
 
+    public void setContrato(String contrato) {
+        this.contrato = contrato;
+    }
+    
     @Override
     public String toString() {
         return getNome();
@@ -74,7 +84,7 @@ public class Fornecedor {
     }
     
     public static Fornecedor buscarFornecedor(String cnpj){
-    String sql = "SELECT cnpj,nome FROM fornecedor WHERE cnpj = ?";
+    String sql = "SELECT cnpj,nome,tipoContrato FROM fornecedor WHERE cnpj = ?";
     ResultSet lista_resultados = null;
     Fornecedor f1 = null;
     try {
@@ -83,7 +93,7 @@ public class Fornecedor {
         lista_resultados = comando.executeQuery();
         while (lista_resultados.next()) {
             f1 = new Fornecedor(cnpj,
-            lista_resultados.getString("nome"));
+            lista_resultados.getString("nome"),lista_resultados.getString("tipoContrato"));
         }
         lista_resultados.close();
         comando.close();
@@ -95,12 +105,13 @@ public class Fornecedor {
  }
     
     public static String inserirFornecedor (Fornecedor f1) {
-         String sql = "INSERT INTO fornecedor(cnpj,nome)"
-         + " VALUES (?,?)";
+         String sql = "INSERT INTO fornecedor(cnpj,nome,tipoContrato)"
+         + " VALUES (?,?,?)";
          try {
              PreparedStatement comando = BD.conexão.prepareStatement(sql);
              comando.setString(1, f1.getCnpj());
              comando.setString(2, f1.getNome());
+             comando.setString(3, f1.getContrato());
              comando.executeUpdate();
              comando.close();
              return null;
@@ -114,12 +125,13 @@ public class Fornecedor {
     }
     
     public static String alterarFornecedor (Fornecedor f1) {
-        String sql = "UPDATE fornecedor SET nome = ?"
+        String sql = "UPDATE fornecedor SET nome = ?, tipoContrato = ?"
         + " WHERE cnpj = ?";
         try {
             PreparedStatement comando = BD.conexão.prepareStatement(sql);
             comando.setString(1, f1.getNome());
-            comando.setString(2, f1.getCnpj());
+            comando.setString(2, f1.getContrato());
+            comando.setString(3, f1.getCnpj());
             comando.executeUpdate();
             comando.close();
             return null;

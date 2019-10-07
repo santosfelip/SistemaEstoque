@@ -111,7 +111,7 @@ public class ItemEstoque {
         if("".equals(cnpj) || sequencial_produtos==-1)return null;
 
         //buscar o Fornecedor do BD
-        sql = "SELECT nome from fornecedor WHERE cnpj = ?";
+        sql = "SELECT nome, tipoContrato from fornecedor WHERE cnpj = ?";
         Fornecedor fornecedor = null;
         
         try {
@@ -119,7 +119,7 @@ public class ItemEstoque {
             comando.setString(1, cnpj);
             lista_resultados = comando.executeQuery();
             while (lista_resultados.next()) {
-                fornecedor = new Fornecedor(cnpj, lista_resultados.getString("nome"));
+                fornecedor = new Fornecedor(cnpj, lista_resultados.getString("nome"),lista_resultados.getString("tipoContrato"));
             }
             lista_resultados.close();
             comando.close();
@@ -139,7 +139,7 @@ public class ItemEstoque {
                 produto = new Produto (sequencial_produtos,
                 lista_resultados.getString("codigo_barras"),
                 lista_resultados.getString("nome"),
-                lista_resultados.getString("Categoria"),
+                Produto.Categoria.values()[lista_resultados.getInt("Categoria")],
                 lista_resultados.getString("marca"),
                 lista_resultados.getInt("quantidade"),
                 lista_resultados.getDouble("valorUnitario"),
