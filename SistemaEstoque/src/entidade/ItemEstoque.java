@@ -262,4 +262,79 @@ public class ItemEstoque {
         }
         return visões;
     }
+    
+    
+    //metodo do filtro
+    public static Vector<Visão<Integer>> getVisõesFiltradas(Boolean comprar, String nome_produto, String nome_fornecedor, int contrato){
+        String sql = "SELECT produto.Sequencial, produto.codigo_barras, produto.nome, produto.quantidade, produto.marca, produto.valorUnitario, produto.valorTotal, produto.Categoria, produto.Comprar," + 
+                " fornecedor.cnpj, fornecedor.nome, fornecedor.tipoContrato,"+
+                " estoque.Sequencial, estoque.ProdutoId, estoque.FornecedorId"+
+                " FROM produto,fornecedor,estoque"
+                +" WHERE estoque.ProdutoID = produto.Sequencial AND estoque.FornecedorID = fornecedor.cnpj";
+        
+        Vector<Visão<Integer>> visões = new Vector<Visão<Integer>>();
+        ResultSet lista_resultados;
+        
+        String contrato_bd = null;
+        if(contrato == 0){
+            contrato_bd = "Contrato";
+            sql += " AND fornecedor.tipoContrato = 'c'";
+        }else{
+            if(contrato == 1){
+                contrato_bd = "Licitação";
+                sql += " AND fornecedor.tipoContrato = 'l'";
+            }
+        }
+        
+        if (!nome_produto.isEmpty()) {
+            sql += " AND produto.nome LIKE '" + nome_produto + "%'";
+        }
+        
+        if(!nome_fornecedor.isEmpty())
+        {
+            sql += " AND fornecedor.nome LIKE '"+ nome_fornecedor + "%'";
+        }
+//        
+        if(comprar == true)
+        {
+            sql+= " AND produto.comprar = 1";
+        }
+        
+        try
+        {
+             PreparedStatement comando = BD.conexão.prepareStatement(sql);
+             lista_resultados = comando.executeQuery();
+                while (lista_resultados.next()) {
+                    if(contrato_bd==null){
+                        if(lista_resultados.getString("fornecedor.tipoContrato").equals("c"))
+                            contrato_bd = "Contrato";
+                        else
+                            contrato_bd = "Licitação";
+                            
+                    }
+                        
+                    visões.addElement(new Visão<Integer>(
+                            lista_resultados.getInt("estoque.Sequencial"),"<html>Sequencial do Estoque = " +
+                            lista_resultados.getInt("estoque.Sequencial") + "<br>  Sequencial do Produto =  "
+                            + lista_resultados.getString("produto.Sequencial") + "<br> Nome do Produto =  "
+                            + lista_resultados.getString("produto.nome")+ "<br> Marca: "
+                            + lista_resultados.getString("produto.marca")+ "<br> Quantidades: "
+                            + lista_resultados.getInt("produto.quantidade")+ "<br> Fornecedor: "
+                            +lista_resultados.getString("fornecedor.nome")+ "<br> Cnpj: "
+                            +lista_resultados.getString("fornecedor.cnpj")+
+                                    "<br>Contrato: "
+                            + contrato_bd+" <br> "+"</html>") 
+                    );
+                }
+            lista_resultados.close();
+            comando.close();
+        }catch(SQLException exceção_sql){
+            exceção_sql.printStackTrace();
+        }
+        
+        
+        
+        return visões;
+    
+    }
 }

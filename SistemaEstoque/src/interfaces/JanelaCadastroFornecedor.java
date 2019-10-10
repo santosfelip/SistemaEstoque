@@ -38,6 +38,9 @@ public class JanelaCadastroFornecedor extends javax.swing.JFrame {
         botoesPanel = new javax.swing.JPanel();
         contratoRadioButton = new javax.swing.JRadioButton();
         licitacaoRadioButton = new javax.swing.JRadioButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        últimas_consultasTextArea = new javax.swing.JTextArea();
+        consultasLabel = new javax.swing.JLabel();
         BotõesPanel = new javax.swing.JPanel();
         InserirButton = new javax.swing.JButton();
         consultarButton = new javax.swing.JButton();
@@ -47,6 +50,7 @@ public class JanelaCadastroFornecedor extends javax.swing.JFrame {
         SairButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         FormularioPanel.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEmptyBorder(5, 0, 5, 0), javax.swing.BorderFactory.createTitledBorder(null, "Formulário", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), new java.awt.Color(102, 153, 255)))); // NOI18N
         FormularioPanel.setOpaque(false);
@@ -81,6 +85,12 @@ public class JanelaCadastroFornecedor extends javax.swing.JFrame {
         licitacaoRadioButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botoesPanel.add(licitacaoRadioButton);
 
+        últimas_consultasTextArea.setColumns(20);
+        últimas_consultasTextArea.setRows(5);
+        jScrollPane1.setViewportView(últimas_consultasTextArea);
+
+        consultasLabel.setText("Últimas Consultas:");
+
         javax.swing.GroupLayout FormularioPanelLayout = new javax.swing.GroupLayout(FormularioPanel);
         FormularioPanel.setLayout(FormularioPanelLayout);
         FormularioPanelLayout.setHorizontalGroup(
@@ -102,10 +112,13 @@ public class JanelaCadastroFornecedor extends javax.swing.JFrame {
                                 .addComponent(CnpjLabel)))
                         .addGap(4, 4, 4)
                         .addGroup(FormularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(CnpjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 528, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(NomeFornecedorTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 671, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(botoesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(89, 89, 89))
+                            .addComponent(consultasLabel)
+                            .addGroup(FormularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(CnpjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 528, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(NomeFornecedorTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 671, Short.MAX_VALUE)
+                                .addComponent(botoesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jScrollPane1)))))
+                .addGap(20, 20, 20))
         );
         FormularioPanelLayout.setVerticalGroup(
             FormularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -128,7 +141,11 @@ public class JanelaCadastroFornecedor extends javax.swing.JFrame {
                     .addComponent(CnpjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(botoesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addComponent(consultasLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         BotõesPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -225,7 +242,7 @@ public class JanelaCadastroFornecedor extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -235,7 +252,7 @@ public class JanelaCadastroFornecedor extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(FormularioPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(BotõesPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(0, 12, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -282,6 +299,7 @@ public class JanelaCadastroFornecedor extends javax.swing.JFrame {
             } else {
                 licitacaoRadioButton.setSelected(true);
             }
+            últimas_consultasTextArea.append(f1.getVisão().toString()+"\n");
         } else JOptionPane.showMessageDialog
         (this, mensagem_erro, "ERRO", JOptionPane.ERROR_MESSAGE);
     }//GEN-LAST:event_consultarFornecedor
@@ -387,11 +405,14 @@ public class JanelaCadastroFornecedor extends javax.swing.JFrame {
     private javax.swing.JButton SairButton;
     private javax.swing.JPanel botoesPanel;
     private javax.swing.JButton consultarButton;
+    private javax.swing.JLabel consultasLabel;
     private javax.swing.JRadioButton contratoRadioButton;
     private javax.swing.JComboBox fornecedores_cadastradosComboBox;
     javax.swing.ButtonGroup grupoBotoesbuttonGroup;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JRadioButton licitacaoRadioButton;
     private javax.swing.JButton limparButton;
     private javax.swing.JButton removerButton;
+    private javax.swing.JTextArea últimas_consultasTextArea;
     // End of variables declaration//GEN-END:variables
 }

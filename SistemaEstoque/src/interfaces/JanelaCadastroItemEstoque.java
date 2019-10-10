@@ -51,8 +51,10 @@ public class JanelaCadastroItemEstoque extends javax.swing.JFrame {
         identificador_sequencialTextField = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         estoques_cadastradosList = new javax.swing.JList();
+        SairButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         BotõesPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         BotõesPanel.setLayout(new java.awt.GridBagLayout());
@@ -205,6 +207,18 @@ public class JanelaCadastroItemEstoque extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(27, 59, 0, 79);
         formulário_EstoquePanel.add(jScrollPane1, gridBagConstraints);
 
+        SairButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/sair.png"))); // NOI18N
+        SairButton.setToolTipText("");
+        SairButton.setBorderPainted(false);
+        SairButton.setContentAreaFilled(false);
+        SairButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        SairButton.setFocusPainted(false);
+        SairButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SairButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -213,13 +227,17 @@ public class JanelaCadastroItemEstoque extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(BotõesPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(formulário_EstoquePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(formulário_EstoquePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(SairButton)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(48, 48, 48)
+                .addComponent(SairButton)
+                .addGap(4, 4, 4)
                 .addComponent(formulário_EstoquePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(BotõesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -315,6 +333,10 @@ public class JanelaCadastroItemEstoque extends javax.swing.JFrame {
         produtos_cadastradosComboBox.setSelectedIndex(-1);
         fornecedores_cadastradosComboBox.setSelectedIndex(-1);
     }//GEN-LAST:event_limparEstoque
+
+    private void SairButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SairButtonActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_SairButtonActionPerformed
     
     private void limparEstoque() {                               
         identificador_sequencialTextField.setText("");
@@ -411,6 +433,7 @@ public class JanelaCadastroItemEstoque extends javax.swing.JFrame {
     private javax.swing.JButton AlterarButton;
     private javax.swing.JPanel BotõesPanel;
     private javax.swing.JButton InserirButton;
+    private javax.swing.JButton SairButton;
     private javax.swing.JButton consultarButton;
     private javax.swing.JList estoques_cadastradosList;
     private javax.swing.JPanel formulário_EstoquePanel;

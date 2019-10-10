@@ -57,6 +57,7 @@ public class JanelaCadastroProduto extends javax.swing.JFrame {
         SairButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         CadastroItemPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Formulário", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), new java.awt.Color(51, 102, 255))); // NOI18N
 
@@ -364,7 +365,7 @@ public class JanelaCadastroProduto extends javax.swing.JFrame {
         valor_unitárioTextField.setText("");
         sequencialTextField.setText("");
         valorTotalTextField.setText("");
-        //limpando os comboBox's
+        //limpando o comboBox
         categoriaComboBox.setSelectedIndex(-1);
     }//GEN-LAST:event_limparCamposTexto
     
@@ -377,7 +378,7 @@ public class JanelaCadastroProduto extends javax.swing.JFrame {
         valor_unitárioTextField.setText("");
         sequencialTextField.setText("");
         valorTotalTextField.setText("");
-        //limpando os comboBox's
+        //limpando o comboBox
         categoriaComboBox.setSelectedIndex(-1);
         
     }

@@ -4,7 +4,11 @@ package interfaces;
 import controle.ControladorCadastroItemEstoque;
 import controle.ControladorCadastroFornecedor;
 import controle.ControladorCadastroProduto;
+import controle.ControladorRelatorioProdutos;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JRException;
 import persistência.BD;
 
 public class JanelaPrincipal extends javax.swing.JFrame {
@@ -21,8 +25,10 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         JanelaPrincipalPanel = new javax.swing.JPanel();
+        imagem = new javax.swing.JLabel();
         JanelaPrincipalMenuBar = new javax.swing.JMenuBar();
         produtoMenu = new javax.swing.JMenu();
         cadastrar_produtoMenuItem = new javax.swing.JMenuItem();
@@ -31,6 +37,8 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         estoqueMenu = new javax.swing.JMenu();
         cadastrar_itemEstoqueMenuItem = new javax.swing.JMenuItem();
         pesquisarMenuItem = new javax.swing.JMenuItem();
+        relatorioMenu = new javax.swing.JMenu();
+        gerar_relatorioMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Sistema Estoque");
@@ -41,21 +49,21 @@ public class JanelaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        JanelaPrincipalPanel.setBackground(java.awt.Color.white);
         JanelaPrincipalPanel.setForeground(new java.awt.Color(204, 204, 204));
         JanelaPrincipalPanel.setToolTipText("");
         JanelaPrincipalPanel.setName(""); // NOI18N
+        JanelaPrincipalPanel.setLayout(new java.awt.GridBagLayout());
 
-        javax.swing.GroupLayout JanelaPrincipalPanelLayout = new javax.swing.GroupLayout(JanelaPrincipalPanel);
-        JanelaPrincipalPanel.setLayout(JanelaPrincipalPanelLayout);
-        JanelaPrincipalPanelLayout.setHorizontalGroup(
-            JanelaPrincipalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 428, Short.MAX_VALUE)
-        );
-        JanelaPrincipalPanelLayout.setVerticalGroup(
-            JanelaPrincipalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 366, Short.MAX_VALUE)
-        );
+        imagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/PREVID.png"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(75, 100, 91, 100);
+        JanelaPrincipalPanel.add(imagem, gridBagConstraints);
 
+        JanelaPrincipalMenuBar.setBackground(java.awt.Color.black);
         JanelaPrincipalMenuBar.setBorder(null);
         JanelaPrincipalMenuBar.setForeground(new java.awt.Color(255, 255, 255));
         JanelaPrincipalMenuBar.setBorderPainted(false);
@@ -65,6 +73,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         JanelaPrincipalMenuBar.setVerifyInputWhenFocusTarget(false);
 
         produtoMenu.setBackground(new java.awt.Color(204, 204, 204));
+        produtoMenu.setForeground(java.awt.Color.white);
         produtoMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/produto.png"))); // NOI18N
         produtoMenu.setText("Produto");
         produtoMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -86,6 +95,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
 
         JanelaPrincipalMenuBar.add(produtoMenu);
 
+        FornecedorMenu.setForeground(java.awt.Color.white);
         FornecedorMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/fornecedor.png"))); // NOI18N
         FornecedorMenu.setText("Fornecedor");
         FornecedorMenu.setToolTipText("");
@@ -103,6 +113,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         JanelaPrincipalMenuBar.add(FornecedorMenu);
 
         estoqueMenu.setBackground(new java.awt.Color(0, 0, 0));
+        estoqueMenu.setForeground(java.awt.Color.white);
         estoqueMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/compra.png"))); // NOI18N
         estoqueMenu.setText("ItemEstoque");
         estoqueMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -124,6 +135,21 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         estoqueMenu.add(pesquisarMenuItem);
 
         JanelaPrincipalMenuBar.add(estoqueMenu);
+
+        relatorioMenu.setForeground(java.awt.Color.white);
+        relatorioMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/buscar.png"))); // NOI18N
+        relatorioMenu.setText("Relatório");
+        relatorioMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        gerar_relatorioMenuItem.setText("Gerar Relatório de Produtos");
+        gerar_relatorioMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gerarRelatorioProdutos(evt);
+            }
+        });
+        relatorioMenu.add(gerar_relatorioMenuItem);
+
+        JanelaPrincipalMenuBar.add(relatorioMenu);
 
         setJMenuBar(JanelaPrincipalMenuBar);
 
@@ -163,8 +189,12 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_terminarSistema
 
     private void Filtro(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Filtro
-       JOptionPane.showMessageDialog (this, "Serviço Indisponível","Informação", JOptionPane.INFORMATION_MESSAGE);
+        new JanelaPesquisarItemEstoque().setVisible(true);
     }//GEN-LAST:event_Filtro
+
+    private void gerarRelatorioProdutos(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gerarRelatorioProdutos
+        new ControladorRelatorioProdutos();
+    }//GEN-LAST:event_gerarRelatorioProdutos
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -183,7 +213,10 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem cadastrar_itemEstoqueMenuItem;
     private javax.swing.JMenuItem cadastrar_produtoMenuItem;
     private javax.swing.JMenu estoqueMenu;
+    private javax.swing.JMenuItem gerar_relatorioMenuItem;
+    private javax.swing.JLabel imagem;
     private javax.swing.JMenuItem pesquisarMenuItem;
     private javax.swing.JMenu produtoMenu;
+    private javax.swing.JMenu relatorioMenu;
     // End of variables declaration//GEN-END:variables
 }
