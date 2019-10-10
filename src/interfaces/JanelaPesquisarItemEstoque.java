@@ -222,7 +222,7 @@ public class JanelaPesquisarItemEstoque extends javax.swing.JFrame {
             filtro.removeAllElements();
             for (Visão<Integer> visão : visões) {
                 filtro.addElement(visão);
-            }
+            }  
         }
     }//GEN-LAST:event_pesquisar_geralButtonActionPerformed
 
